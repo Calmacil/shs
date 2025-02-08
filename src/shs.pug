@@ -1,0 +1,37 @@
+include components/widgets
+include components/panel
+include components/numovermax
+
++hiddenInput('version', 1)
+main
+    +panel('SHS - Fiche de suivi de', true).panel-name
+        +textLabelled('charname', 'Nom:', 'charname')
+        +textLabelled('player', 'Joueur:', 'player')
+        +hiddenInput('character_name', '')
+    +panel().panel-nav
+        +navRadio('page', 'Notes & relations', 'base')
+        +navRadio('page', 'Combat', 'combat')
+    +panel('Santé').panel-hp
+        +numOverMax('hp', 0, 0)
+    +panel('Protection').panel-armour
+        +numOverMax('armour', 0, 0)
+    +panel('Oxygène').panel-oxygen
+        +numOverMax('oxygen', 0, 0)
+    +panel('Caractéristiques').panel-carac
+        p ...
+    +panel('Expertises (D8 -> D10)').panel-skills
+        p ...
+
+    +hiddenInput('page', 'base')
+    .page.page-combat
+        +panel('Blessures et états').panel-wounds
+            p ...
+        +panel('Armes').panel-weapons
+            p ...
+    .page.page-base
+        +panel('Notes &amp; Équipement').panel-notes
+            p ...
+        +panel('Relations').panel-relations
+            p ...
+scripts(type='text/sheetworker')
+    include js/namechange.js

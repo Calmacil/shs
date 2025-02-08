@@ -1,0 +1,95 @@
+
+<input name="attr_version" type="hidden" value="1"/>
+<main>
+  <div class="panel panel-name">
+    <h2>SHS - Fiche de suivi de</h2>
+    <div class="panelbody">
+      <label class="textLabelled" for="charname"><span>Nom:</span>
+        <input name="attr_charname" type="text" value=""/>
+      </label>
+      <label class="textLabelled" for="player"><span>Joueur:</span>
+        <input name="attr_player" type="text" value=""/>
+      </label>
+      <input name="attr_character_name" type="hidden" value=""/>
+    </div>
+  </div>
+  <div class="panel panel-nav">
+    <div class="panelbody">
+      <label class="navRadio">
+        <input name="attr_page" type="radio" value="base" attributes.checked="attributes.checked"/><span title="Notes &amp; relations"></span>
+      </label>
+      <label class="navRadio">
+        <input name="attr_page" type="radio" value="combat" attributes.checked="attributes.checked"/><span title="Combat"></span>
+      </label>
+    </div>
+  </div>
+  <div class="panel panel-hp">
+    <h3>Santé</h3>
+    <div class="panelbody">
+      <div class="num-over-max">
+        <input name="attr_hp" type="number" value="0"/>
+        <input name="attr_hp_max" type="number" value="0"/>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-armour">
+    <h3>Protection</h3>
+    <div class="panelbody">
+      <div class="num-over-max">
+        <input name="attr_armour" type="number" value="0"/>
+        <input name="attr_armour_max" type="number" value="0"/>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-oxygen">
+    <h3>Oxygène</h3>
+    <div class="panelbody">
+      <div class="num-over-max">
+        <input name="attr_oxygen" type="number" value="0"/>
+        <input name="attr_oxygen_max" type="number" value="0"/>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-carac">
+    <h3>Caractéristiques</h3>
+    <div class="panelbody">
+      <p>...</p>
+    </div>
+  </div>
+  <div class="panel panel-skills">
+    <h3>Expertises (D8 -> D10)</h3>
+    <div class="panelbody">
+      <p>...</p>
+    </div>
+  </div>
+  <input name="attr_page" type="hidden" value="base"/>
+  <div class="page page-combat">
+    <div class="panel panel-wounds">
+      <h3>Blessures et états</h3>
+      <div class="panelbody">
+        <p>...</p>
+      </div>
+    </div>
+    <div class="panel panel-weapons">
+      <h3>Armes</h3>
+      <div class="panelbody">
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+  <div class="page page-base">
+    <div class="panel panel-notes">
+      <h3>Notes &amp; Équipement</h3>
+      <div class="panelbody">
+        <p>...</p>
+      </div>
+    </div>
+    <div class="panel panel-relations">
+      <h3>Relations</h3>
+      <div class="panelbody">
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+</main>
+<scripts type="text/sheetworker"></scripts>

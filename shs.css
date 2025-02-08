@@ -1,0 +1,212 @@
+.charsheet {
+  /** Expand switches */
+}
+.charsheet button.roll[type=roll],
+.charsheet button.roll[type=action] {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+  background: none;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  margin-top: 3px;
+  box-shadow: none;
+  padding: 2px 3px 0 3px;
+}
+.charsheet button.roll[type=roll]::before,
+.charsheet button.roll[type=action]::before {
+  font-family: "dicefontd20";
+  content: "0";
+}
+.charsheet button.roll[type=roll].small,
+.charsheet button.roll[type=action].small {
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  font-size: 16px;
+  margin-top: 0;
+}
+.charsheet button.roll[type=roll]:hover, .charsheet button.roll[type=roll]:hover::before,
+.charsheet button.roll[type=action]:hover,
+.charsheet button.roll[type=action]:hover::before {
+  font-weight: bold;
+}
+.charsheet button.roll[type=roll].white::before,
+.charsheet button.roll[type=action].white::before {
+  color: white;
+}
+.charsheet .panel-nav {
+  width: 100%;
+}
+.charsheet .panel-nav label.navRadio {
+  padding: 5px;
+  align-items: center;
+  justify-content: baseline;
+  font-weight: bold;
+}
+.charsheet .panel-nav label.navRadio > input[type=radio] {
+  opacity: 0;
+}
+.charsheet .panel-nav label.navRadio > input[type=radio] + span::before {
+  width: 12px;
+  height: 12px;
+  border: solid black 1px;
+  display: inline-flex;
+  content: " ";
+  margin-right: 5px;
+}
+.charsheet .panel-nav label.navRadio > input[type=radio] + span::after {
+  content: attr(title);
+}
+.charsheet .panel-nav label.navRadio > input[type=radio]:checked + span::before {
+  background-color: gray;
+}
+.charsheet select option.optgroup[disabled] {
+  color: black;
+  background: #ddd;
+  font-weight: bold;
+}
+.charsheet label.textLabelled {
+  border-bottom: 1px dotted black;
+  width: calc(100% - 8px);
+}
+.charsheet label.textLabelled > span {
+  font-style: italic;
+  font-weight: bold;
+  width: 20%;
+}
+.charsheet label.textLabelled > input[type=text], .charsheet label.textLabelled > input[type=number] {
+  border: none;
+  background: none;
+  width: calc(80% - 10px);
+  margin-left: 10px;
+}
+.charsheet label.textLabelled > input[type=number] {
+  width: calc(70% - 10px);
+  text-align: right;
+}
+.charsheet label > input[type=checkbox][name=attr_expand] {
+  position: absolute;
+  width: 10px;
+  opacity: 0;
+  height: 20px;
+}
+.charsheet label > input[type=checkbox][name=attr_expand] ~ span {
+  width: 100%;
+  vertical-align: center;
+}
+.charsheet label > input[type=checkbox][name=attr_expand] ~ span::before {
+  display: flex;
+  content: "►";
+  justify-content: center;
+}
+.charsheet label > input[type=checkbox][name=attr_expand]:checked ~ span::before {
+  content: "▼";
+}
+
+.charsheet .panel > h2, .charsheet .panel > h3 {
+  color: white;
+  text-align: center;
+  width: calc(100% - 20px);
+  margin-left: 20px;
+  align-self: flex-end;
+  font-variant: small-caps;
+  clip-path: polygon(0 15px, 15px 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%);
+  background: linear-gradient(135deg, #555 80%, darkred);
+}
+.charsheet .panel > h2 {
+  font-size: 18px;
+  height: 30px;
+}
+.charsheet .panel > h3 {
+  font-size: 16px;
+}
+.charsheet .panel > .panelbody {
+  width: calc(100% - 20px);
+  height: calc(100% - 28px);
+  background-color: #d4d4de;
+  padding: 10px;
+  clip-path: polygon(0 20px, 20px 0, 100% 0, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px));
+}
+.charsheet .panel.panel-nav {
+  height: 100%;
+}
+.charsheet .panel.panel-nav > .panelbody {
+  clip-path: none;
+  border-radius: 15px;
+}
+
+.charsheet .num-over-max > input[type=number] {
+  border-radius: 40px;
+  width: 70px;
+  height: 70px;
+  box-shadow: 3px 3px 10px 0;
+  text-align: right;
+  font-size: 3em;
+}
+.charsheet .num-over-max > input[type=number]:last-of-type {
+  width: 50px;
+  height: 50px;
+  margin-top: 35px;
+  margin-left: 45px;
+  font-size: 2.5em;
+}
+
+.charsheet main {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 25% 25% 50%;
+  grid-template-rows: 100px 150px 150px 150px;
+  grid-template-areas: "name name nav" "hp carac pages" "armour carac pages" "oxygen skill pages";
+  grid-gap: 8px 8px;
+}
+.charsheet .page {
+  grid-area: pages;
+  display: none;
+  grid-template-columns: 100%;
+  grid-template-rows: 50% 50%;
+  grid-template-areas: "up" "bottom";
+}
+.charsheet input[type=hidden][name=attr_page][value=base] ~ .page.page-base, .charsheet input[type=hidden][name=attr_page][value=combat] ~ .page.page-combat {
+  display: grid;
+}
+.charsheet .panel-name {
+  grid-area: name;
+}
+.charsheet .panel-nav {
+  grid-area: nav;
+}
+.charsheet .panel-hp {
+  grid-area: hp;
+}
+.charsheet .panel-armour {
+  grid-area: armour;
+}
+.charsheet .panel-oxygen {
+  grid-area: oxygen;
+}
+.charsheet .panel-carac {
+  grid-area: carac;
+}
+.charsheet .panel-skills {
+  grid-area: skill;
+}
+.charsheet .panel-wounds {
+  grid-area: up;
+}
+.charsheet .panel-weapons {
+  grid-area: bottom;
+}
+.charsheet .panel-notes {
+  grid-area: up;
+}
+.charsheet .panel-relations {
+  grid-area: bottom;
+}
+
+/*# sourceMappingURL=shs.css.map */
