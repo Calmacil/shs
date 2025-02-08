@@ -1,0 +1,24 @@
+@use 'vars' as v
+
+.charsheet
+    .ability
+        &> label.carrure > span::before
+            @include v.abilityBg('carrure.png')
+        &> label.motricite > span::before
+            @include v.abilityBg('motricite.png')
+        &> label.science > span::before
+            @include v.abilityBg('science.png')
+        &> label.relationnel > span::before
+            @include v.abilityBg('relationel.png')
+        &> label.sangfroid > span::before
+            @include v.abilityBg('sangfroid.png')
+            
+        &> label.textLabelled
+            display: flex
+            // width: calc(100% - 50px)
+            color: red
+        &> label > input[type=number]
+            width: 50px
+            height: 25px
+            border-radius: 15px
+            background: white

@@ -70,7 +70,6 @@
   font-weight: bold;
 }
 .charsheet label.textLabelled {
-  border-bottom: 1px dotted black;
   width: calc(100% - 8px);
 }
 .charsheet label.textLabelled > span {
@@ -155,6 +154,42 @@
   font-size: 2.5em;
 }
 
+.charsheet .ability > label.carrure > span::before {
+  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/path");
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+}
+.charsheet .ability > label.motricite > span::before {
+  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/path");
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+}
+.charsheet .ability > label.science > span::before {
+  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/path");
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+}
+.charsheet .ability > label.relationnel > span::before {
+  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/path");
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+}
+.charsheet .ability > label.sangfroid > span::before {
+  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/path");
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+}
+.charsheet .ability > label.textLabelled {
+  display: flex;
+  color: red;
+}
+.charsheet .ability > label > input[type=number] {
+  width: 50px;
+  height: 25px;
+  border-radius: 15px;
+  background: white;
+}
+
 .charsheet main {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -184,11 +219,29 @@
 .charsheet .panel-hp {
   grid-area: hp;
 }
+.charsheet .panel-hp > .panelbody {
+  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/heart-beats.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 90px 90px;
+}
 .charsheet .panel-armour {
   grid-area: armour;
 }
+.charsheet .panel-armour > .panelbody {
+  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/kevlar-vest.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 90px 90px;
+}
 .charsheet .panel-oxygen {
   grid-area: oxygen;
+}
+.charsheet .panel-oxygen > .panelbody {
+  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/astronaut-helmet.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 90px 90px;
 }
 .charsheet .panel-carac {
   grid-area: carac;

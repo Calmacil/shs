@@ -1,0 +1,8 @@
+mixin ability(name, label)
+    .ability
+        //- +numberLabelled(name, label, `ab_${name}`, 0)&attributes(attributes)
+        label.textLabelled&attributes(attributes)
+            span!= label
+            +numberInput(name, value)(id=`ab_${name}`)
+            +actButton(`roll_${name}`, '')
+            +actButton(`exp_${name}`, '')

@@ -1,6 +1,7 @@
 include components/widgets
 include components/panel
 include components/numovermax
+include components/ability
 
 +hiddenInput('version', 1)
 main
@@ -18,9 +19,13 @@ main
     +panel('Oxygène').panel-oxygen
         +numOverMax('oxygen', 0, 0)
     +panel('Caractéristiques').panel-carac
-        p ...
+        +ability('carrure', 'Carrure').carrure
+        +ability('motricite', 'Motricité').motricite
+        +ability('science', 'Science').science
+        +ability('relationnel', 'Relationnel').relationnel
+        +ability('sangfroid', 'Sang froid').sangfroid
     +panel('Expertises (D8 -> D10)').panel-skills
-        p ...
+        +textareaInput('expertises')
 
     +hiddenInput('page', 'base')
     .page.page-combat

@@ -1,6 +1,8 @@
 @use "components/widgets"
+@use "components/vars"
 @use "components/panel"
 @use "components/numovermax"
+@use "components/ability"
 
 .charsheet
     main
@@ -34,10 +36,16 @@
         grid-area: nav
     .panel-hp
         grid-area: hp
+        &> .panelbody
+            @include vars.numoverBg("heart-beats.png")
     .panel-armour
         grid-area: armour
+        &> .panelbody
+            @include vars.numoverBg("kevlar-vest.png")
     .panel-oxygen
         grid-area: oxygen
+        &> .panelbody
+            @include vars.numoverBg("astronaut-helmet.png")
     .panel-carac
         grid-area: carac
     .panel-skills
