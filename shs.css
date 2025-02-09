@@ -21,6 +21,14 @@
   font-family: "dicefontd20";
   content: "0";
 }
+.charsheet button.roll[type=roll].d8::before,
+.charsheet button.roll[type=action].d8::before {
+  font-family: "dicefontd8";
+}
+.charsheet button.roll[type=roll].d10::before,
+.charsheet button.roll[type=action].d10::before {
+  font-family: "dicefontd10";
+}
 .charsheet button.roll[type=roll].small,
 .charsheet button.roll[type=action].small {
   width: 16px;
@@ -143,51 +151,69 @@
   width: 70px;
   height: 70px;
   box-shadow: 3px 3px 10px 0;
-  text-align: right;
+  text-align: center;
   font-size: 3em;
 }
 .charsheet .num-over-max > input[type=number]:last-of-type {
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   margin-top: 35px;
   margin-left: 45px;
-  font-size: 2.5em;
+  font-size: 2em;
 }
 
-.charsheet .ability > label.carrure > span::before {
-  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/path");
+.charsheet .ability > label.carrure > div::before {
+  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/carrure.png");
   background-repeat: no-repeat;
   background-size: 20px 20px;
+  background-position: center;
 }
-.charsheet .ability > label.motricite > span::before {
-  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/path");
+.charsheet .ability > label.motricite > div::before {
+  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/motricite.png");
   background-repeat: no-repeat;
   background-size: 20px 20px;
+  background-position: center;
 }
-.charsheet .ability > label.science > span::before {
-  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/path");
+.charsheet .ability > label.science > div::before {
+  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/science.png");
   background-repeat: no-repeat;
   background-size: 20px 20px;
+  background-position: center;
 }
-.charsheet .ability > label.relationnel > span::before {
-  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/path");
+.charsheet .ability > label.relationnel > div::before {
+  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/relationel.png");
   background-repeat: no-repeat;
   background-size: 20px 20px;
+  background-position: center;
 }
-.charsheet .ability > label.sangfroid > span::before {
-  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/path");
+.charsheet .ability > label.sangfroid > div::before {
+  background-image: url("https://raw.githubusercontent.com/Calmacil/shs/main/img/sangfroid.png");
   background-repeat: no-repeat;
   background-size: 20px 20px;
+  background-position: center;
 }
 .charsheet .ability > label.textLabelled {
   display: flex;
-  color: red;
+  flex-wrap: wrap;
+}
+.charsheet .ability > label.textLabelled > div {
+  width: 100%;
+}
+.charsheet .ability > label.textLabelled > div::before {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  content: " ";
+  margin-bottom: -2px;
+  margin-top: -2px;
+  margin-right: 3px;
 }
 .charsheet .ability > label > input[type=number] {
   width: 50px;
   height: 25px;
   border-radius: 15px;
   background: white;
+  margin-right: 65px;
 }
 
 .charsheet main {
