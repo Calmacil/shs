@@ -4,7 +4,7 @@
   <div class="panel panel-name">
     <h2>SHS - Fiche de suivi de</h2>
     <div class="panelbody">
-      <label class="textLabelled" for="charname"><span>Nom:</span>
+      <label class="textLabelled" for="charname"><span>Nom & Rôle:</span>
         <input name="attr_charname" type="text" value=""/>
       </label>
       <label class="textLabelled" for="player"><span>Joueur:</span>
@@ -120,15 +120,48 @@
     <div class="panel panel-notes">
       <h3>Notes &amp; Équipement</h3>
       <div class="panelbody">
-        <p>...</p>
+        <textarea name="attr_notes"></textarea>
       </div>
     </div>
     <div class="panel panel-relations">
       <h3>Relations</h3>
       <div class="panelbody">
-        <p>...</p>
+        <div class="relation">
+          <p>Ami(e) avec</p>
+          <input name="attr_friend" type="text" value=""/><span>+</span>
+        </div>
+        <div class="relation">
+          <p>Amoureux(se) de</p>
+          <input name="attr_inlove" type="text" value=""/><span>+</span>
+        </div>
+        <div class="relation">
+          <p>Même famille que (préciser le lien)</p>
+          <input name="attr_family" type="text" value=""/><span>+</span>
+        </div>
+        <div class="relation">
+          <p>Hostile envers</p>
+          <input name="attr_hostile" type="text" value=""/><span>-</span>
+        </div>
       </div>
     </div>
   </div>
 </main>
-<scripts type="text/sheetworker"></scripts>
+<script type="text/worker">
+  var editCharName = (ev) => {
+    console.log('ohayou sekai !')
+    getAttrs(['charname', 'player'], v => {
+        let display = v.player + ' - ' + v.charname;
+        setAttrs({
+            character_name: display
+        })
+    })
+}
+
+on('change:charname change:player', ev => {
+    editCharName(ev)
+})
+on('sheet:opened', ev => {
+    console.error('TA TETE DEVENIR PIZZA')
+    editCharName(ev)
+})
+</script>

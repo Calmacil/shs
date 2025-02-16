@@ -2,11 +2,12 @@ include components/widgets
 include components/panel
 include components/numovermax
 include components/ability
+include components/relation
 
 +hiddenInput('version', 1)
 main
     +panel('SHS - Fiche de suivi de', true).panel-name
-        +textLabelled('charname', 'Nom:', 'charname')
+        +textLabelled('charname', 'Nom & Rôle:', 'charname')
         +textLabelled('player', 'Joueur:', 'player')
         +hiddenInput('character_name', '')
     +panel().panel-nav
@@ -35,8 +36,12 @@ main
             p ...
     .page.page-base
         +panel('Notes &amp; Équipement').panel-notes
-            p ...
+            +textareaInput('notes')
         +panel('Relations').panel-relations
-            p ...
-scripts(type='text/sheetworker')
+            +relation('friend', 'Ami(e) avec', '+')
+            +relation('inlove', 'Amoureux(se) de', '+')
+            +relation('family', 'Même famille que (préciser le lien)', '+')
+            +relation('hostile', 'Hostile envers', '-')
+script(type='text/worker')
     include js/namechange.js
+    include init.js

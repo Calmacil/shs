@@ -83,17 +83,21 @@
 .charsheet label.textLabelled > span {
   font-style: italic;
   font-weight: bold;
-  width: 20%;
+  width: 30%;
 }
 .charsheet label.textLabelled > input[type=text], .charsheet label.textLabelled > input[type=number] {
   border: none;
   background: none;
-  width: calc(80% - 10px);
+  width: calc(70% - 10px);
   margin-left: 10px;
 }
 .charsheet label.textLabelled > input[type=number] {
   width: calc(70% - 10px);
   text-align: right;
+}
+.charsheet textarea {
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
 }
 .charsheet label > input[type=checkbox][name=attr_expand] {
   position: absolute;
@@ -214,6 +218,30 @@
   border-radius: 15px;
   background: white;
   margin-right: 65px;
+}
+
+.charsheet .panel-relations .relation {
+  display: block;
+  height: 25%;
+  vertical-align: middle;
+}
+.charsheet .panel-relations .relation > p {
+  display: inline-block;
+  width: 30%;
+}
+.charsheet .panel-relations .relation > span {
+  display: inline-block;
+  width: 12px;
+  height: 25px;
+  background-color: #f4f4f4;
+  border-radius: 0 15px 15px 0;
+  color: red;
+}
+.charsheet .panel-relations .relation > input[type=text] {
+  margin-top: 6px;
+  display: inline-block;
+  width: calc(70% - 20px);
+  border: none;
 }
 
 .charsheet main {
