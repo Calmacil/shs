@@ -1,3 +1,7 @@
+/**
+ * Says «hello» and then changes character's name
+ * @param {event} ev 
+ */
 var editCharName = (ev) => {
     console.log('ohayou sekai !')
     getAttrs(['charname', 'player'], v => {

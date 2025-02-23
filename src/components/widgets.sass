@@ -90,3 +90,21 @@
                     justify-content: center
             &:checked ~ span::before
                 content: '▼'
+
+    /** Repeating sections global style */
+    .repcontrol 
+
+        button
+            padding: 3px
+            border-radius: 0 0 10px 10px
+            font-size: 0.8em
+            float: left
+            &.repcontrol_add
+                border-radius: 0 0 0 10px
+
+            &.repcontrol_edit
+                float: none
+                border-radius: 0 0 10px 0
+
+    .repcontainer.editmode ~ .repcontrol > button.repcontrol_edit
+        border-radius: 0 0 10px 10px

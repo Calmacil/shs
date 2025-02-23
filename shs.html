@@ -1,5 +1,6 @@
 
 <input name="attr_version" type="hidden" value="1"/>
+<input name="attr_woundMalus" type="hidden" value="0"/>
 <main>
   <div class="panel panel-name">
     <h2>SHS - Fiche de suivi de</h2>
@@ -54,43 +55,48 @@
     <h3>Caractéristiques</h3>
     <div class="panelbody">
       <div class="ability">
+        <input name="attr_hiddencarrure" type="hidden" value="&amp;{template:simple} {{jet=[[3d_X_]]}} {{mod=?{Bonus / Malus ?|0}}} {{carac=Carrure}}"/>
         <label class="textLabelled carrure">
           <div>Carrure</div>
-          <input name="attr_carrure" type="number" value=""/>
-          <button class="roll d8" name="act_roll_carrure" type="action" value=""></button>
-          <button class="roll d10" name="act_exp_carrure" type="action" value=""></button>
+          <input name="attr_carrure" type="number" value="5"/>
+          <button class="roll d8" name="act_roll_carrure" type="action" value="Carrure"></button>
+          <button class="roll d10" name="act_exp_carrure" type="action" value="Carrure"></button>
         </label>
       </div>
       <div class="ability">
+        <input name="attr_hiddenmotricite" type="hidden" value="&amp;{template:simple} {{jet=[[3d_X_]]}} {{mod=?{Bonus / Malus ?|0}}} {{carac=Motricité}}"/>
         <label class="textLabelled motricite">
           <div>Motricité</div>
-          <input name="attr_motricite" type="number" value=""/>
-          <button class="roll d8" name="act_roll_motricite" type="action" value=""></button>
-          <button class="roll d10" name="act_exp_motricite" type="action" value=""></button>
+          <input name="attr_motricite" type="number" value="5"/>
+          <button class="roll d8" name="act_roll_motricite" type="action" value="Motricité"></button>
+          <button class="roll d10" name="act_exp_motricite" type="action" value="Motricité"></button>
         </label>
       </div>
       <div class="ability">
+        <input name="attr_hiddenscience" type="hidden" value="&amp;{template:simple} {{jet=[[3d_X_]]}} {{mod=?{Bonus / Malus ?|0}}} {{carac=Science}}"/>
         <label class="textLabelled science">
           <div>Science</div>
-          <input name="attr_science" type="number" value=""/>
-          <button class="roll d8" name="act_roll_science" type="action" value=""></button>
-          <button class="roll d10" name="act_exp_science" type="action" value=""></button>
+          <input name="attr_science" type="number" value="5"/>
+          <button class="roll d8" name="act_roll_science" type="action" value="Science"></button>
+          <button class="roll d10" name="act_exp_science" type="action" value="Science"></button>
         </label>
       </div>
       <div class="ability">
+        <input name="attr_hiddenrelationnel" type="hidden" value="&amp;{template:simple} {{jet=[[3d_X_]]}} {{mod=?{Bonus / Malus ?|0}}} {{carac=Relationnel}}"/>
         <label class="textLabelled relationnel">
           <div>Relationnel</div>
-          <input name="attr_relationnel" type="number" value=""/>
-          <button class="roll d8" name="act_roll_relationnel" type="action" value=""></button>
-          <button class="roll d10" name="act_exp_relationnel" type="action" value=""></button>
+          <input name="attr_relationnel" type="number" value="5"/>
+          <button class="roll d8" name="act_roll_relationnel" type="action" value="Relationnel"></button>
+          <button class="roll d10" name="act_exp_relationnel" type="action" value="Relationnel"></button>
         </label>
       </div>
       <div class="ability">
+        <input name="attr_hiddensangfroid" type="hidden" value="&amp;{template:simple} {{jet=[[3d_X_]]}} {{mod=?{Bonus / Malus ?|0}}} {{carac=Sang froid}}"/>
         <label class="textLabelled sangfroid">
           <div>Sang froid</div>
-          <input name="attr_sangfroid" type="number" value=""/>
-          <button class="roll d8" name="act_roll_sangfroid" type="action" value=""></button>
-          <button class="roll d10" name="act_exp_sangfroid" type="action" value=""></button>
+          <input name="attr_sangfroid" type="number" value="5"/>
+          <button class="roll d8" name="act_roll_sangfroid" type="action" value="Sang froid"></button>
+          <button class="roll d10" name="act_exp_sangfroid" type="action" value="Sang froid"></button>
         </label>
       </div>
     </div>
@@ -106,13 +112,37 @@
     <div class="panel panel-wounds">
       <h3>Blessures et états</h3>
       <div class="panelbody">
-        <p>...</p>
+        <div class="wounds"><span>Description</span><span>Malus</span><span>IG</span><span>Dgts</span>
+          <fieldset class="repeating_wounds">
+            <input name="attr_description" type="text" value=""/>
+            <input name="attr_malus" type="number" value="0"/>
+            <input name="attr_ig" type="number" value="0"/>
+            <input name="attr_damage" type="number" value="0"/>
+          </fieldset>
+        </div>
       </div>
     </div>
     <div class="panel panel-weapons">
       <h3>Armes</h3>
       <div class="panelbody">
-        <p>...</p>
+        <div class="weapons"><span>Arme</span><span title="Impact">Imp.</span><span title="Portée">Por.</span><span>Attributs</span><span title="Munitions">Mun.</span><span></span>
+          <div class="unnarmed">
+            <input name="attr_unnarmed_name" type="text" value="Mains nues"/>
+            <input name="attr_unnarmed_impact" type="number" value="0"/>
+            <input name="attr_unnarmed_range" type="text" value="C"/>
+            <input name="attr_unnarmed_attributes" type="text" value="-"/>
+            <input name="attr_unnarmed_ammo" type="number" value="0"/>
+            <button class="roll d10" name="act_unnarmed_attack" type="action" value=""></button>
+          </div>
+          <fieldset class="repeating_weapons">
+            <input name="attr_name" type="text" value=""/>
+            <input name="attr_impact" type="number" value="0"/>
+            <input name="attr_range" type="text" value=""/>
+            <input name="attr_attributes" type="text" value=""/>
+            <input name="attr_ammo" type="number" value="0"/>
+            <button class="roll d10" name="act_attack" type="action" value=""></button>
+          </fieldset>
+        </div>
       </div>
     </div>
   </div>
@@ -145,9 +175,81 @@
       </div>
     </div>
   </div>
-</main>
+</main><rolltemplate class="sheet-rolltemplate-simple">
+    <h3>{{label}}</h3>
+    <div class="sheet-rollBody">
+        <div class="sheet-big">{{computed::totalSuccesses}} succès !</div>
+        <div class="sheet-baseRoll">
+            <div>{{roll}} réussites</div>
+            {{#rollTotal() computed::sides 8}}
+                <div class=sheet-d8>{{computed::roll}}</div>
+            {{/rollTotal() computed::sides 8}}
+            {{#rollTotal() computed::sides 10}}
+                <div class="sheet-d10">{{computed::roll}}</div>
+            {{/rollTotal() computed::sides 10}}
+        </div>
+        <div class="sheet-modRoll">
+            <div>{{computed::trueMod}} bonus/malus</div>
+            <div>{{computed::mod}}</div>
+        </div>
+    </div>
+</rolltemplate>
 <script type="text/worker">
-  var editCharName = (ev) => {
+  
+const baseRoll = "&{template:_TPL_} {{roll=[[3d_D_>_DIFF_]]}} {{mod=[[_MOD_dF]]}} {{label=_LABEL_}} {{totalSuccesses=[[0]]}} {{trueMod=[[0]]}} {{sides=[[0]]}}"
+const askForMod = "!{{template:default}}{{ask=![[?{Bonus / Malus ?|0}]]}}"
+const diceLetters = '0abcdefghij'
+const fateLetters = '−0+'
+const dicify = dice => dice.map(x => diceLetters[x])
+const fatify = dice => dice.map(x => fateLetters[1+x])
+
+var attributeRoll = async (attrName, isExpert=false, label='', specificMod=0, template='simple', sublabel='') => {
+    let customMod = await startRoll(askForMod)
+
+    getAttrs([attrName, 'woundsMalus'], async v => {
+        let attrVal = parseInt(v[attrName])||8
+        let woundsMod = Math.abs(parseInt(v.woundsMalus)||0)
+        let totalMod = specificMod + customMod.results.ask.result - woundsMod
+        let modIsMalus = (totalMod < 0)
+        let sides = isExpert ? 10 : 8
+
+        let rollString = baseRoll.replace('_TPL_', template)
+            .replace('_D_', sides)
+            .replace('_DIFF_', attrVal)
+            .replace('_MOD_', Math.min(Math.abs(totalMod), 5))
+            .replace('_LABEL_', label)
+
+        let roll = await startRoll(rollString)
+
+        // Compute mod dice result
+        let modSuccesses = 0;
+        roll.results.mod.dice.forEach(die => {
+            if (modIsMalus && die < 0) {
+                modSuccesses--;
+            } else if (!modIsMalus && die > 0) {
+                modSuccesses++
+            }
+        })
+        console.log(roll)
+
+        let successes = roll.results.roll.result + modSuccesses
+        allDice = dicify(roll.results.roll.dice)
+        console.log(roll.results.roll.dice)
+
+        finishRoll(roll.rollId, {
+            totalSuccesses: successes,
+            trueMod: modSuccesses,
+            roll: dicify(roll.results.roll.dice).join(' '),
+            mod: fatify(roll.results.mod.dice).join(' '),
+            sides: sides,
+            label: sublabel
+        })
+    })
+}/**
+ * Says «hello» and then changes character's name
+ * @param {event} ev 
+ */
+var editCharName = (ev) => {
     console.log('ohayou sekai !')
     getAttrs(['charname', 'player'], v => {
         let display = v.player + ' - ' + v.charname;
@@ -160,8 +262,34 @@
 on('change:charname change:player', ev => {
     editCharName(ev)
 })
+/**
+ * Computes the max HP according to carrure value
+ */
+var computeMaxHp = () => {
+    getAttrs(['carrure'], v => {
+        let hpMax = 17 - (parseInt(v.carrure)||5)
+        setAttrs({
+            hp_max: hpMax
+        })
+    })
+}
+
+on('change:carrure', ev => {
+    computeMaxHp()
+})
+
+on('clicked:roll_carrure clicked:roll_motricite clicked:roll_science clicked:roll_relationnel '
+    + 'clicked:roll_sangfroid clicked:exp_carrure clicked:exp_motricite clicked:exp_science '
+    + 'clicked:exp_relationnel clicked:exp_sangfroid', ev => {
+    let nameData = ev.htmlAttributes.name.split('_')
+    let attrName = nameData[2];
+    let isExpert = nameData[1] == 'exp' ? true : false
+    let label = ev.htmlAttributes.value
+    attributeRoll(attrName, isExpert, label)
+})
 on('sheet:opened', ev => {
     console.error('TA TETE DEVENIR PIZZA')
     editCharName(ev)
+    computeMaxHp()
 })
 </script>

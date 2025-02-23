@@ -1,0 +1,22 @@
+mixin weapons()
+    .weapons
+        span Arme
+        span(title="Impact") Imp.
+        span(title="Portée") Por.
+        span Attributs
+        span(title="Munitions") Mun.
+        span
+        .unnarmed
+            +textInput('unnarmed_name', 'Mains nues')(readonly)
+            +numberInput('unnarmed_impact', 0)
+            +textInput('unnarmed_range', 'C')
+            +textInput('unnarmed_attributes', '-')
+            +numberInput('unnarmed_ammo', 0)
+            +actButton('unnarmed_attack', '').roll.d10
+        fieldset.repeating_weapons
+            +textInput('name')
+            +numberInput('impact', 0)
+            +textInput('range')
+            +textInput('attributes')
+            +numberInput('ammo', 0)
+            +actButton('attack', '').roll.d10

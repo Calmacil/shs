@@ -1,10 +1,14 @@
+include rollstrings
 include components/widgets
 include components/panel
 include components/numovermax
 include components/ability
 include components/relation
+include components/wounds
+include components/weapons
 
 +hiddenInput('version', 1)
++hiddenInput('woundMalus', 0)
 main
     +panel('SHS - Fiche de suivi de', true).panel-name
         +textLabelled('charname', 'Nom & Rôle:', 'charname')
@@ -31,9 +35,9 @@ main
     +hiddenInput('page', 'base')
     .page.page-combat
         +panel('Blessures et états').panel-wounds
-            p ...
+            +wounds()
         +panel('Armes').panel-weapons
-            p ...
+            +weapons()
     .page.page-base
         +panel('Notes &amp; Équipement').panel-notes
             +textareaInput('notes')
@@ -42,6 +46,9 @@ main
             +relation('inlove', 'Amoureux(se) de', '+')
             +relation('family', 'Même famille que (préciser le lien)', '+')
             +relation('hostile', 'Hostile envers', '-')
+include rolltemplates/default.html
 script(type='text/worker')
+    include js/dice.js
     include js/namechange.js
+    include js/ability.js
     include init.js

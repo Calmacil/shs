@@ -1,8 +1,10 @@
 mixin ability(name, label)
+    - let localRoll = baseRoll.replace('_CARAC_', label)
     .ability
         //- +numberLabelled(name, label, `ab_${name}`, 0)&attributes(attributes)
+        +hiddenInput(`hidden${name}`, localRoll)
         label.textLabelled&attributes(attributes)
             div!= label
-            +numberInput(name, value)(id=`ab_${name}`)
-            +actButton(`roll_${name}`, '').roll.d8
-            +actButton(`exp_${name}`, '').roll.d10
+            +numberInput(name, 5)(id=`ab_${name}`)
+            +actButton(`roll_${name}`, label).roll.d8
+            +actButton(`exp_${name}`, label).roll.d10

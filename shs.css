@@ -1,5 +1,6 @@
 .charsheet {
   /** Expand switches */
+  /** Repeating sections global style */
 }
 .charsheet button.roll[type=roll],
 .charsheet button.roll[type=action] {
@@ -116,6 +117,22 @@
 }
 .charsheet label > input[type=checkbox][name=attr_expand]:checked ~ span::before {
   content: "▼";
+}
+.charsheet .repcontrol button {
+  padding: 3px;
+  border-radius: 0 0 10px 10px;
+  font-size: 0.8em;
+  float: left;
+}
+.charsheet .repcontrol button.repcontrol_add {
+  border-radius: 0 0 0 10px;
+}
+.charsheet .repcontrol button.repcontrol_edit {
+  float: none;
+  border-radius: 0 0 10px 0;
+}
+.charsheet .repcontainer.editmode ~ .repcontrol > button.repcontrol_edit {
+  border-radius: 0 0 10px 10px;
 }
 
 .charsheet .panel > h2, .charsheet .panel > h3 {
@@ -241,6 +258,140 @@
   margin-top: 6px;
   display: inline-block;
   width: calc(70% - 20px);
+  border: none;
+}
+
+.charsheet .wounds {
+  width: 100%;
+}
+.charsheet .wounds > span {
+  display: inline-block;
+  padding: 1px;
+}
+.charsheet .wounds > span:first-of-type {
+  width: calc(100% - 40px - 40px - 40px - 8px);
+}
+.charsheet .wounds > span:nth-of-type(2) {
+  width: 40px;
+}
+.charsheet .wounds > span:nth-of-type(3) {
+  width: 40px;
+}
+.charsheet .wounds > span:nth-of-type(4) {
+  width: 40px;
+}
+.charsheet .wounds > .repcontainer > .repitem > input {
+  border: 0;
+}
+.charsheet .wounds > .repcontainer > .repitem > input:first-of-type {
+  width: calc(100% - 40px - 40px - 40px - 8px - 4px);
+}
+.charsheet .wounds > .repcontainer > .repitem > input:nth-of-type(2) {
+  width: 40px;
+}
+.charsheet .wounds > .repcontainer > .repitem > input:nth-of-type(3) {
+  width: 40px;
+}
+.charsheet .wounds > .repcontainer > .repitem > input:nth-of-type(4) {
+  width: 40px;
+}
+
+.charsheet .weapons > span {
+  display: inline-block;
+  padding: 1px;
+}
+.charsheet .weapons > span:first-of-type {
+  width: calc(100% - 30px - 30px - 90px - 30px - 25px - 12px);
+}
+.charsheet .weapons > span:nth-of-type(2) {
+  width: 30px;
+}
+.charsheet .weapons > span:nth-of-type(3) {
+  width: 30px;
+}
+.charsheet .weapons > span:nth-of-type(4) {
+  width: 90px;
+}
+.charsheet .weapons > span:nth-of-type(5) {
+  width: 30px;
+}
+.charsheet .weapons > span:nth-of-type(6) {
+  width: 25px;
+}
+.charsheet .weapons > .repcontainer > .repitem > input, .charsheet .weapons > .unnarmed > input {
+  border: 0;
+}
+.charsheet .weapons > .repcontainer > .repitem > input:first-of-type, .charsheet .weapons > .unnarmed > input:first-of-type {
+  width: calc(100% - 30px - 30px - 90px - 30px - 25px - 12px - 8px);
+}
+.charsheet .weapons > .repcontainer > .repitem > input:nth-of-type(2), .charsheet .weapons > .unnarmed > input:nth-of-type(2) {
+  width: 30px;
+}
+.charsheet .weapons > .repcontainer > .repitem > input:nth-of-type(3), .charsheet .weapons > .unnarmed > input:nth-of-type(3) {
+  width: 30px;
+}
+.charsheet .weapons > .repcontainer > .repitem > input:nth-of-type(4), .charsheet .weapons > .unnarmed > input:nth-of-type(4) {
+  width: 90px;
+}
+.charsheet .weapons > .repcontainer > .repitem > input:nth-of-type(5), .charsheet .weapons > .unnarmed > input:nth-of-type(5) {
+  width: 30px;
+}
+.charsheet .weapons > .repcontainer > .repitem > button[type=action], .charsheet .weapons > .unnarmed > button[type=action] {
+  padding: 0;
+  margin: 0;
+  width: 25px;
+  display: inline-block;
+}
+.charsheet .weapons > .repcontainer > .repitem > button[type=action]::before, .charsheet .weapons > .unnarmed > button[type=action]::before {
+  display: inline-block;
+}
+
+.sheet-rolltemplate-simple {
+  width: 100%;
+  padding: 0px;
+  background: #d4d4de;
+  display: block;
+  overflow: auto;
+}
+.sheet-rolltemplate-simple h3 {
+  background: #555;
+  color: white;
+  padding: 5px;
+}
+.sheet-rolltemplate-simple > .sheet-rollBody {
+  padding: 10px;
+}
+.sheet-rolltemplate-simple > .sheet-rollBody > .sheet-big {
+  text-align: center;
+  font-size: 1.2em;
+  height: 35px;
+  vertical-align: middle;
+}
+.sheet-rolltemplate-simple > .sheet-rollBody > .sheet-baseRoll, .sheet-rolltemplate-simple > .sheet-rollBody > .sheet-modRoll {
+  display: inline-block;
+  float: left;
+  width: 50%;
+}
+.sheet-rolltemplate-simple > .sheet-rollBody > .sheet-baseRoll > div, .sheet-rolltemplate-simple > .sheet-rollBody > .sheet-modRoll > div {
+  height: 30px;
+  text-align: center;
+}
+.sheet-rolltemplate-simple > .sheet-rollBody > .sheet-baseRoll > div:first-of-type, .sheet-rolltemplate-simple > .sheet-rollBody > .sheet-modRoll > div:first-of-type {
+  background: #c4c4ce;
+}
+.sheet-rolltemplate-simple > .sheet-rollBody > .sheet-baseRoll .sheet-d8, .sheet-rolltemplate-simple > .sheet-rollBody > .sheet-modRoll .sheet-d8 {
+  font-family: dicefontd8;
+  font-size: 1.8em;
+}
+.sheet-rolltemplate-simple > .sheet-rollBody > .sheet-baseRoll .sheet-d10, .sheet-rolltemplate-simple > .sheet-rollBody > .sheet-modRoll .sheet-d10 {
+  font-family: dicefontd10;
+  font-size: 1.8em;
+}
+.sheet-rolltemplate-simple .inlinerollresult {
+  border: none;
+  background: none;
+}
+.sheet-rolltemplate-simple .inlinerollresult.fullcrit, .sheet-rolltemplate-simple .inlinerollresult.fullfail, .sheet-rolltemplate-simple .inlinerollresult.importantroll {
   border: none;
 }
 

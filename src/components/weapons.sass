@@ -1,0 +1,45 @@
+$impact_width: 30px
+$range_width: 30px
+$attrs_width: 90px
+$mun_width: 30px
+$act_width: 25px
+$name_width: calc(100% - $impact_width - $range_width - $attrs_width - $mun_width - $act_width - 12px)
+
+.charsheet .weapons
+    & > span
+        display: inline-block
+        padding: 1px
+
+        &:first-of-type
+            width: $name_width
+        &:nth-of-type(2)
+            width: $impact_width
+        &:nth-of-type(3)
+            width: $range_width
+        &:nth-of-type(4)
+            width: $attrs_width
+        &:nth-of-type(5)
+            width: $mun_width
+        &:nth-of-type(6)
+            width: $act_width
+    &> .repcontainer > .repitem > input,
+    &> .unnarmed > input
+        border: 0
+        &:first-of-type
+            width: calc($name_width - 8px)
+        &:nth-of-type(2)
+            width: $impact_width
+        &:nth-of-type(3)
+            width: $range_width
+        &:nth-of-type(4)
+            width: $attrs_width
+        &:nth-of-type(5)
+            width: $mun_width
+    &> .repcontainer > .repitem > button[type=action],
+    &> .unnarmed > button[type=action]
+        padding: 0
+        margin: 0
+        width: $act_width
+        display: inline-block
+        &::before
+            display: inline-block
