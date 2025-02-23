@@ -6,6 +6,16 @@ const fateLetters = '−0+'
 const dicify = dice => dice.map(x => diceLetters[x])
 const fatify = dice => dice.map(x => fateLetters[1+x])
 
+/**
+ * Performs a SHS standard attribute roll
+ *
+ * @param {string} attrName The roll20 attribute identifier to roll against
+ * @param {boolean} isExpert Wether to roll 8 or 10 sided dice
+ * @param {string} label What to display in the headerbar
+ * @param {int} specificMod Some rolls require specific modifiers (fight, etc)
+ * @param {string} template custom template name; default is «simple»
+ * @param {string} sublabel Optional label to be displayed on specific templates
+ */
 var attributeRoll = async (attrName, isExpert=false, label='', specificMod=0, template='simple', sublabel='') => {
     let customMod = await startRoll(askForMod)
 
