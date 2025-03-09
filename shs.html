@@ -1,6 +1,6 @@
 
 <input name="attr_version" type="hidden" value="1"/>
-<input name="attr_woundMalus" type="hidden" value="0"/>
+<input name="attr_woundsMalus" type="hidden" value="0"/>
 <main>
   <div class="panel panel-name">
     <h2>SHS - Fiche de suivi de</h2>
@@ -55,7 +55,6 @@
     <h3>Caractéristiques</h3>
     <div class="panelbody">
       <div class="ability">
-        <input name="attr_hiddencarrure" type="hidden" value="&amp;{template:simple} {{jet=[[3d_X_]]}} {{mod=?{Bonus / Malus ?|0}}} {{carac=Carrure}}"/>
         <label class="textLabelled carrure">
           <div>Carrure</div>
           <input name="attr_carrure" type="number" value="5"/>
@@ -64,7 +63,6 @@
         </label>
       </div>
       <div class="ability">
-        <input name="attr_hiddenmotricite" type="hidden" value="&amp;{template:simple} {{jet=[[3d_X_]]}} {{mod=?{Bonus / Malus ?|0}}} {{carac=Motricité}}"/>
         <label class="textLabelled motricite">
           <div>Motricité</div>
           <input name="attr_motricite" type="number" value="5"/>
@@ -73,7 +71,6 @@
         </label>
       </div>
       <div class="ability">
-        <input name="attr_hiddenscience" type="hidden" value="&amp;{template:simple} {{jet=[[3d_X_]]}} {{mod=?{Bonus / Malus ?|0}}} {{carac=Science}}"/>
         <label class="textLabelled science">
           <div>Science</div>
           <input name="attr_science" type="number" value="5"/>
@@ -82,7 +79,6 @@
         </label>
       </div>
       <div class="ability">
-        <input name="attr_hiddenrelationnel" type="hidden" value="&amp;{template:simple} {{jet=[[3d_X_]]}} {{mod=?{Bonus / Malus ?|0}}} {{carac=Relationnel}}"/>
         <label class="textLabelled relationnel">
           <div>Relationnel</div>
           <input name="attr_relationnel" type="number" value="5"/>
@@ -91,7 +87,6 @@
         </label>
       </div>
       <div class="ability">
-        <input name="attr_hiddensangfroid" type="hidden" value="&amp;{template:simple} {{jet=[[3d_X_]]}} {{mod=?{Bonus / Malus ?|0}}} {{carac=Sang froid}}"/>
         <label class="textLabelled sangfroid">
           <div>Sang froid</div>
           <input name="attr_sangfroid" type="number" value="5"/>
@@ -112,7 +107,7 @@
     <div class="panel panel-wounds">
       <h3>Blessures et états</h3>
       <div class="panelbody">
-        <div class="wounds"><span>Description</span><span>Malus</span><span>IG</span><span>Dgts</span>
+        <div class="wounds"><span>Description</span><span>Malus</span><span title="Indice de gravité">IG</span><span>Dégât</span>
           <fieldset class="repeating_wounds">
             <input name="attr_description" type="text" value=""/>
             <input name="attr_malus" type="number" value="0"/>
@@ -125,14 +120,17 @@
     <div class="panel panel-weapons">
       <h3>Armes</h3>
       <div class="panelbody">
-        <div class="weapons"><span>Arme</span><span title="Impact">Imp.</span><span title="Portée">Por.</span><span>Attributs</span><span title="Munitions">Mun.</span><span></span>
+        <div class="weapons"><span>Arme</span><span title="Impact">Imp.</span><span title="Portée">Por.</span><span>Attributs</span><span title="Munitions">Mun.</span><span title="Expert ?">Exp.</span><span></span>
           <div class="unnarmed">
-            <input name="attr_unnarmed_name" type="text" value="Mains nues"/>
-            <input name="attr_unnarmed_impact" type="number" value="0"/>
-            <input name="attr_unnarmed_range" type="text" value="C"/>
-            <input name="attr_unnarmed_attributes" type="text" value="-"/>
-            <input name="attr_unnarmed_ammo" type="number" value="0"/>
-            <button class="roll d10" name="act_unnarmed_attack" type="action" value=""></button>
+            <input name="attr_unnarmed-name" type="text" value="Mains nues" readonly="readonly"/>
+            <input name="attr_unnarmed-impact" readonly="readonly" type="number" value="0"/>
+            <input name="attr_unnarmed-range" type="text" value="C" readonly="readonly"/>
+            <input name="attr_unnarmed-attributes" type="text" value="-" readonly="readonly"/>
+            <input name="attr_unnarmed-ammo" readonly="readonly" type="number" value="0"/>
+            <label>
+              <input name="attr_unnarmed-exp" value="1" type="checkbox"/><span title=" "></span>
+            </label>
+            <button class="roll d10" name="act_unnarmed-attack" type="action" value=""></button>
           </div>
           <fieldset class="repeating_weapons">
             <input name="attr_name" type="text" value=""/>
@@ -140,8 +138,12 @@
             <input name="attr_range" type="text" value=""/>
             <input name="attr_attributes" type="text" value=""/>
             <input name="attr_ammo" type="number" value="0"/>
+            <label>
+              <input name="attr_exp" value="1" type="checkbox"/><span title=" "></span>
+            </label>
             <button class="roll d10" name="act_attack" type="action" value=""></button>
           </fieldset>
+          <button class="hidden" name="act_unnarmed" type="action" value=""></button>
         </div>
       </div>
     </div>
@@ -177,7 +179,16 @@
   </div>
 </main><rolltemplate class="sheet-rolltemplate-simple">
     <h3>{{label}}</h3>
-    <div class="sheet-rollBody">
+    <div class="sheet-rollBody">{{#rollTotal() computed::option 1}}
+        <div class="sheet-rollOption">
+            Surpassement ! <small>+1 NT</small>
+        </div>
+        {{/rollTotal() computed::option 1}}
+        {{#rollTotal() computed::option 2}}
+        <div class="sheet-rollOption">
+            Sacrifice ! <small>Vous êtes désormais mort</small>
+        </div>
+        {{/rollTotal() computed::option 2}}
         <div class="sheet-big">{{computed::totalSuccesses}} succès !</div>
         <div class="sheet-baseRoll">
             <div>{{roll}} réussites</div>
@@ -193,33 +204,112 @@
             <div>{{computed::mod}}</div>
         </div>
     </div>
+</rolltemplate><rolltemplate class="sheet-rolltemplate-attack">
+    <h3>{{label}}</h3>
+    <div class="sheet-rollBody">
+        {{#rollTotal() computed::option 1}}
+        <div class="sheet-rollOption">
+            Surpassement ! <small>+1 NT</small>
+        </div>
+        {{/rollTotal() computed::option 1}}
+        {{#rollTotal() computed::option 2}}
+        <div class="sheet-rollOption">
+            Sacrifice ! <small>Vous êtes désormais mort</small>
+        </div>
+        {{/rollTotal() computed::option 2}}
+        <div class="sheet-big">{{computed::totalSuccesses}} succès !</div>
+        <div class="sheet-baseRoll">
+            <div>{{roll}} réussites</div>
+            {{#rollTotal() computed::sides 8}}
+                <div class=sheet-d8>{{computed::roll}}</div>
+            {{/rollTotal() computed::sides 8}}
+            {{#rollTotal() computed::sides 10}}
+                <div class="sheet-d10">{{computed::roll}}</div>
+            {{/rollTotal() computed::sides 10}}
+        </div>
+        <div class="sheet-modRoll">
+            <div>{{computed::trueMod}} bonus/malus</div>
+            <div>{{computed::mod}}</div>
+        </div>
+        <div class="sheet-conditions">
+            {{#rollTotal() computed::surprise 1}}
+                <div class="sheet-condition">Adversaire surpris</div>
+            {{/rollTotal() computed::surprise 1}}
+            {{#rollTotal() computed::aimed 1}}
+                <div class="sheet-condition">Tir ajusté</div>
+            {{/rollTotal() computed::aimed 1}}
+            {{#rollTotal() computed::lethal 1}}
+                <div class="sheet-condition">Attaque expéditive</div>
+            {{/rollTotal() computed::lethal 1}}
+        </div>
+        <div class="sheet-actions">
+
+        </div>
+    </div>
+</rolltemplate><rolltemplate class="sheet-rolltemplate-goldorak">
+    <h3>Fulguro-poing !</h3>
 </rolltemplate>
 <script type="text/worker">
   
-const baseRoll = "&{template:_TPL_} {{roll=[[3d_D_>_DIFF_]]}} {{mod=[[_MOD_dF]]}} {{label=_LABEL_}} {{totalSuccesses=[[0]]}} {{trueMod=[[0]]}} {{sides=[[0]]}}"
-const askForMod = "!{{template:default}}{{ask=![[?{Bonus / Malus ?|0}]]}}"
+/**
+ * Library of useful functions to manage repeating sections
+ */
+const section_name = (section, id, field) => `${section.startsWith('repeating_') ? section : `repeating_${section}`}_${id}_${field}`
+
+const section_parts = (full_name, part='section') => {
+    let [stub, section, row, ...field] = full_name.split('_')
+    if (part === 'section' || part === 1) return section;
+    else if (part === 'row' || part === 'id' || part === 2) return row;
+    else return field.join('_')
+}
+
+const section_changes = section_object => {
+    let output = ''
+    Object.keys(section_object).forEach((key, index) => {
+        if (index) section += ' ';
+        section_object[key].forEach(field => {
+            output += 'change:'
+            output += key === 'globals' ? field : `repeating_${key}:${field}`
+        })
+    })
+    return output
+}
+  
+const baseRoll = "&{template:_TPL_} {{roll=[[3d_D_>_DIFF_]]}} {{mod=[[_MOD_dF]]}} {{label=_LABEL_}} {{totalSuccesses=[[0]]}} {{trueMod=[[0]]}} {{sides=[[0]]}} {{option=[[0]]}}"
+
+const askForMod = "!{{template:default}}"
+    + "{{option=![[?{Option ?|Jet normal, 0|Surpassement, 1|Sacrifice, 2}]]}}"
+    + "{{ask=![[?{Bonus / Malus ?|0}]]}}"
+
 const diceLetters = '0abcdefghij'
 const fateLetters = '−0+'
 const dicify = dice => dice.map(x => diceLetters[x])
 const fatify = dice => dice.map(x => fateLetters[1+x])
+
+const OPT_NORMAL = 0
+const OPT_SURPASS = 1
+const OPT_SACRIFICE = 2
 
 /**
  * Performs a SHS standard attribute roll
  *
  * @param {string} attrName The roll20 attribute identifier to roll against
  * @param {boolean} isExpert Wether to roll 8 or 10 sided dice
- * @param {string} label What to display in the headerbar
+ * @param {string} title What to display in the headerbar
  * @param {int} specificMod Some rolls require specific modifiers (fight, etc)
  * @param {string} template custom template name; default is «simple»
  * @param {string} sublabel Optional label to be displayed on specific templates
  */
-var attributeRoll = async (attrName, isExpert=false, label='', specificMod=0, template='simple', sublabel='') => {
-    let customMod = await startRoll(askForMod)
+var attributeRoll = async (attrName, isExpert=false, title='', specificMod=0, template='simple', sublabel='', conditions={}) => {
+    console.log(attrName, isExpert, title, specificMod, template, sublabel, conditions)
+    let preroll = await startRoll(askForMod)
 
     getAttrs([attrName, 'woundsMalus'], async v => {
         let attrVal = parseInt(v[attrName])||8
         let woundsMod = Math.abs(parseInt(v.woundsMalus)||0)
-        let totalMod = specificMod + customMod.results.ask.result - woundsMod
+        let totalMod = specificMod + preroll.results.ask.result - woundsMod
+        let option = parseInt(preroll.results.option.result)||0
+        if (option >= OPT_SURPASS) totalMod += 2
         let modIsMalus = (totalMod < 0)
         let sides = isExpert ? 10 : 8
 
@@ -227,7 +317,11 @@ var attributeRoll = async (attrName, isExpert=false, label='', specificMod=0, te
             .replace('_D_', sides)
             .replace('_DIFF_', attrVal)
             .replace('_MOD_', Math.min(Math.abs(totalMod), 5))
-            .replace('_LABEL_', label)
+            .replace('_LABEL_', title)
+
+        if (template == 'attack') {
+            rollString = rollString + attackVars
+        }
 
         let roll = await startRoll(rollString)
 
@@ -240,31 +334,168 @@ var attributeRoll = async (attrName, isExpert=false, label='', specificMod=0, te
                 modSuccesses++
             }
         })
-        console.log(roll)
 
-        let successes = roll.results.roll.result + modSuccesses
+        let successes = roll.results.roll.result + modSuccesses + (option == OPT_SACRIFICE ? 2 : 0)
         allDice = dicify(roll.results.roll.dice)
-        console.log(roll.results.roll.dice)
 
-        finishRoll(roll.rollId, {
+        let results = {
             totalSuccesses: successes,
             trueMod: modSuccesses,
             roll: dicify(roll.results.roll.dice).join(' '),
             mod: fatify(roll.results.mod.dice).join(' '),
             sides: sides,
             label: sublabel
-        })
+        }
+
+        finishRoll(roll.rollId, {...results, ...conditions})
     })
-}/**
+}
+  
+//
+const askForStrategy = "!{{template:default}}"
+    + "{{strategy=![[?{Stratégie ?|Combat rapproché (faire face), 0|Combat rapproché (fuite), 1|Distance, 2}]]}}"
+
+const askForMeleeMod = "!{{template:default}}"
+    + "{{surpriseMod=![[?{Adversaire surpris ?|Non, 0|Oui, 2}]]}}"
+    + "{{lethalAtk=![[?{Attaque expéditive ?|Non, 0|Oui, -2}]]}}"
+
+const askForDistMod = "!{{template:default}}"
+    + "{{aimedMod=![[?{Tir ajusté au tour précédent ?|Non, 0|Oui, 2}]]}}"
+    + "{{lethalAtk=![[?{Attaque expéditive ?|Non, 0|Oui, -2}]]}}"
+
+const distanceUnnarmed = "&{template:goldorak} {{roll=[[0]]}}"
+
+const attackVars = "{{surprise=[[0]]}}{{lethal=[[0]]}}{{aimed=[[0]]}}"
+
+/**
+ * Returns a range modifier for long range attacks
+ *
+ * @param {string} char A string representing a range
+ * @returns The range modifier
+ */
+const rangeMod = char => {
+    switch(char.trim()) {
+        case 'C':
+        case 'P':
+            return 1
+        case 'M':
+            return 0
+        case 'L':
+            return -1
+        default:
+            return 0
+    }
+}
+
+/**
+ * Performs the pre-roll for melee attacks
+ *
+ * @returns Pre roll data
+ */
+const preMelee = async () => {
+    let roll = await startRoll(askForMeleeMod)
+    let lethalMod = parseInt(roll.results.lethalAtk.result)||0
+    let surpriseMod = parseInt(roll.results.surpriseMod.result)
+    let response = {
+        specificMod: lethalMod + surpriseMod,
+        conditions: {
+            lethal: lethalMod&&1,
+            surprise: surpriseMod&&1
+        }
+    }
+
+    return response
+}
+
+/**
+ * Performs the pre-roll for long range attacks
+ *
+ * @returns Pre roll data
+ */
+const preDistance = async () => {
+    let roll = await startRoll(askForDistMod)
+    let lethalMod = parseInt(roll.results.lethalAtk.result)||0
+    let aimedMod = parseInt(roll.results.aimedMod.result)||0
+    let response = {
+        specificMod: lethalMod + aimedMod,
+        conditions: {
+            lethal: lethalMod&&1,
+            aimed: aimedMod&&1
+        }
+    }
+
+    return response
+}
+
+const attackRoll = async (strategy, wpnName, isExpert, range, impact, isArmed) => {
+    // Case strategy 0 Aggressive
+    attr = 'carrure'
+    sublabel = 'Combat rapproché (Carrure)'
+
+    let preRoll = {};
+    if (strategy === 2) {
+        attr = 'sangfroid'
+        sublabel = 'Combat à distance (Sang-froid)'
+        preRoll = await preDistance()
+    } else {
+        preRoll = await preMelee()
+        if (strategy === 1) {
+            attr = 'motricite'
+            sublabel = 'Combat rapproché (Motricité - Fuite)'
+        }
+    }
+
+    attributeRoll(attr, (isExpert === 1), wpnName, preRoll.specificMod + isArmed, 'attack', sublabel, preRoll.conditions)
+}
+
+on('clicked:unnarmed-attack', async ev => {
+    let strategyroll = await startRoll(askForStrategy)
+    let strategy = parseInt(strategyroll.results.strategy.result)||0
+
+    if (strategy === 2) {
+        let oops = await startRoll(distanceUnnarmed)
+        finishRoll(oops.rollId)
+    } else {
+        getAttrs(['unnarmed-exp'], (v) => {
+            console.log(v)
+            let wpName = 'Mains nues'
+            let isExpert = parseInt(v['unnamred-exp'])||0
+            let range = 'C'
+            let impact = 0
+            let isArmed = 0
+
+            attackRoll(strategy, wpName, isExpert, range, impact, isArmed)
+        })
+    }
+})
+
+on('clicked:repeating_weapons:attack', async ev => {
+    strategyroll = await startRoll(askForStrategy)
+    let strategy = parseInt(strategyroll.results.strategy.result)||0
+
+    let toGet = ['name', 'impact', 'range', 'exp'].map(a => 'repeating_weapons_' + a)
+    console.error(toGet)
+    getAttrs(toGet, v => {
+        console.log(v)
+        let wpName = v.repeating_weapons_name
+        let isExpert = parseInt(v.repeating_weapons_exp)||0
+        let range = v.repeating_weapons_range
+        let impact = parseInt(v.repeating_weapons_impact)||0
+        let isArmed = 1
+
+        attackRoll(strategy, wpName, isExpert, range, impact, isArmed)
+    })
+})
+/**
  * Says «hello» and then changes character's name
  * @param {event} ev 
  */
-var editCharName = (ev) => {
-    console.log('ohayou sekai !')
+const editCharName = (ev) => {
     getAttrs(['charname', 'player'], v => {
         let display = v.player + ' - ' + v.charname;
         setAttrs({
-            character_name: display
+            character_name: display,
+            killhim_action: `%{${display}|killhim-action}`
         })
     })
 }
@@ -272,10 +503,11 @@ var editCharName = (ev) => {
 on('change:charname change:player', ev => {
     editCharName(ev)
 })
+  
 /**
  * Computes the max HP according to carrure value
  */
-var computeMaxHp = () => {
+const computeMaxHp = () => {
     getAttrs(['carrure'], v => {
         let hpMax = 17 - (parseInt(v.carrure)||5)
         setAttrs({
@@ -294,11 +526,36 @@ on('clicked:roll_carrure clicked:roll_motricite clicked:roll_science clicked:rol
     let nameData = ev.htmlAttributes.name.split('_')
     let attrName = nameData[2];
     let isExpert = nameData[1] == 'exp' ? true : false
-    let label = ev.htmlAttributes.value
-    attributeRoll(attrName, isExpert, label)
+    let title = ev.htmlAttributes.value
+    attributeRoll(attrName, isExpert, title)
 })
+  
+var updateWoundMod = () => {
+    getSectionIDs('repeating_wounds', ids => {
+        const rows = ids.map(id => section_name('wounds', id, 'malus'))
+        getAttrs(rows, values => {
+            let total = 0
+            rows.forEach(row => {
+                let malus = +Math.abs(values[row] || 0)
+                total += malus
+            })
+console.warn(total)
+            setAttrs({
+                woundsMalus: total
+            })
+        })
+    })
+}
+
+const woundsMalusFields = {
+    wounds: ['malus']
+}
+
+on(`${section_changes(woundsMalusFields)} remove:repeating_wounds`, ev => {
+    updateWoundMod()
+})
+  
 on('sheet:opened', ev => {
-    console.error('TA TETE DEVENIR PIZZA')
     editCharName(ev)
     computeMaxHp()
 })

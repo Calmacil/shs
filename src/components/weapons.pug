@@ -5,18 +5,22 @@ mixin weapons()
         span(title="Portée") Por.
         span Attributs
         span(title="Munitions") Mun.
+        span(title="Expert ?") Exp.
         span
         .unnarmed
-            +textInput('unnarmed_name', 'Mains nues')(readonly)
-            +numberInput('unnarmed_impact', 0)
-            +textInput('unnarmed_range', 'C')
-            +textInput('unnarmed_attributes', '-')
-            +numberInput('unnarmed_ammo', 0)
-            +actButton('unnarmed_attack', '').roll.d10
+            +textInput('unnarmed-name', 'Mains nues')(readonly)
+            +numberInput('unnarmed-impact', 0)(readonly)
+            +textInput('unnarmed-range', 'C')(readonly)
+            +textInput('unnarmed-attributes', '-')(readonly)
+            +numberInput('unnarmed-ammo', 0)(readonly)
+            +cbButton('unnarmed-exp', ' ', 1)
+            +actButton('unnarmed-attack', '').roll.d10
         fieldset.repeating_weapons
             +textInput('name')
             +numberInput('impact', 0)
             +textInput('range')
             +textInput('attributes')
             +numberInput('ammo', 0)
+            +cbButton('exp', ' ', 1)
             +actButton('attack', '').roll.d10
+        +actButton('unnarmed', '').hidden

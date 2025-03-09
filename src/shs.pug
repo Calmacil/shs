@@ -7,7 +7,7 @@ include components/wounds
 include components/weapons
 
 +hiddenInput('version', 1)
-+hiddenInput('woundMalus', 0)
++hiddenInput('woundsMalus', 0)
 main
     +panel('SHS - Fiche de suivi de', true).panel-name
         +textLabelled('charname', 'Nom & Rôle:', 'charname')
@@ -45,9 +45,13 @@ main
             +relation('inlove', 'Amoureux(se) de', '+')
             +relation('family', 'Même famille que (préciser le lien)', '+')
             +relation('hostile', 'Hostile envers', '-')
-include rolltemplates/default.html
+include rolltemplates/simple.html
+include rolltemplates/attack.html
+include rolltemplates/goldorak.html
 script(type='text/worker')
+    include js/sections.js
     include js/dice.js
+    include js/combat.js
     include js/namechange.js
     include js/ability.js
     include js/wounds.js

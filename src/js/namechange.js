@@ -1,13 +1,14 @@
+
 /**
  * Says «hello» and then changes character's name
  * @param {event} ev 
  */
-var editCharName = (ev) => {
-    console.log('ohayou sekai !')
+const editCharName = (ev) => {
     getAttrs(['charname', 'player'], v => {
         let display = v.player + ' - ' + v.charname;
         setAttrs({
-            character_name: display
+            character_name: display,
+            killhim_action: `%{${display}|killhim-action}`
         })
     })
 }

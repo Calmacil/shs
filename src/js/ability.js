@@ -2,7 +2,7 @@
 /**
  * Computes the max HP according to carrure value
  */
-var computeMaxHp = () => {
+const computeMaxHp = () => {
     getAttrs(['carrure'], v => {
         let hpMax = 17 - (parseInt(v.carrure)||5)
         setAttrs({
@@ -21,6 +21,6 @@ on('clicked:roll_carrure clicked:roll_motricite clicked:roll_science clicked:rol
     let nameData = ev.htmlAttributes.name.split('_')
     let attrName = nameData[2];
     let isExpert = nameData[1] == 'exp' ? true : false
-    let label = ev.htmlAttributes.value
-    attributeRoll(attrName, isExpert, label)
+    let title = ev.htmlAttributes.value
+    attributeRoll(attrName, isExpert, title)
 })

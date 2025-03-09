@@ -5,7 +5,7 @@
     - {string} name - The attribute name. Do not prefix with 'attr_'
     - {string} value - The default value the input is filled with
 mixin textInput(name, value='')
-  input(class!=attributes.class name=`attr_${name}` placeholder!=attributes.placeholder type='text' value=value)
+  input(class!=attributes.class name=`attr_${name}` placeholder!=attributes.placeholder type='text' value=value readonly!=attributes.readonly)
 
 //- @pugdoc
   name: textLabelled

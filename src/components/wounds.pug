@@ -2,8 +2,8 @@ mixin wounds()
     .wounds
         span Description
         span Malus
-        span IG
-        span Dgts
+        span(title="Indice de gravité") IG
+        span Dégât
         fieldset.repeating_wounds
             +textInput('description')
             +numberInput('malus', 0)
