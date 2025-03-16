@@ -3,8 +3,9 @@ $range_width: 30px
 $attrs_width: 90px
 $mun_width: 30px
 $exp_width: 30px
+$burn_width: 30px
 $act_width: 25px
-$name_width: calc(100% - $impact_width - $range_width - $attrs_width - $mun_width - $exp_width - $act_width - 8px)
+$name_width: calc(100% - $impact_width - $range_width - $attrs_width - $mun_width - $exp_width - $burn_width - $act_width - 8px)
 
 .charsheet .weapons
     & > span
@@ -23,6 +24,11 @@ $name_width: calc(100% - $impact_width - $range_width - $attrs_width - $mun_widt
             width: $mun_width
         &:nth-of-type(6)
             width: $exp_width
+        &:nth-of-type(7)
+            width: $burn_width
+            font-family: 'Pictos Custom'
+            color: red
+            font-size: 1.3em
         &:last-of-type
             width: calc($act_width - 8px)
     &> .repcontainer > .repitem > input,
@@ -39,7 +45,8 @@ $name_width: calc(100% - $impact_width - $range_width - $attrs_width - $mun_widt
         &:nth-of-type(5)
             width: $mun_width
     &> .repcontainer > .repitem > label,
-    &> .unnarmed > label
+    &> .unnarmed > label,
+    &> .unnarmed > span
         display: inline-block
         width: $exp_width
         margin-right: -12px

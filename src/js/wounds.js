@@ -1,5 +1,5 @@
 
-var updateWoundMod = () => {
+const updateWoundMod = () => {
     getSectionIDs('repeating_wounds', ids => {
         const rows = ids.map(id => section_name('wounds', id, 'malus'))
         getAttrs(rows, values => {

@@ -301,7 +301,7 @@
   padding: 1px;
 }
 .charsheet .weapons > span:first-of-type {
-  width: calc(100% - 30px - 30px - 90px - 30px - 30px - 25px - 8px);
+  width: calc(100% - 30px - 30px - 90px - 30px - 30px - 30px - 25px - 8px);
 }
 .charsheet .weapons > span:nth-of-type(2) {
   width: 30px;
@@ -318,6 +318,12 @@
 .charsheet .weapons > span:nth-of-type(6) {
   width: 30px;
 }
+.charsheet .weapons > span:nth-of-type(7) {
+  width: 30px;
+  font-family: "Pictos Custom";
+  color: red;
+  font-size: 1.3em;
+}
 .charsheet .weapons > span:last-of-type {
   width: 17px;
 }
@@ -325,7 +331,7 @@
   border: 0;
 }
 .charsheet .weapons > .repcontainer > .repitem > input:first-of-type, .charsheet .weapons > .unnarmed > input:first-of-type {
-  width: calc(100% - 30px - 30px - 90px - 30px - 30px - 25px - 8px - 8px);
+  width: calc(100% - 30px - 30px - 90px - 30px - 30px - 30px - 25px - 8px - 8px);
 }
 .charsheet .weapons > .repcontainer > .repitem > input:nth-of-type(2), .charsheet .weapons > .unnarmed > input:nth-of-type(2) {
   width: 30px;
@@ -339,7 +345,7 @@
 .charsheet .weapons > .repcontainer > .repitem > input:nth-of-type(5), .charsheet .weapons > .unnarmed > input:nth-of-type(5) {
   width: 30px;
 }
-.charsheet .weapons > .repcontainer > .repitem > label, .charsheet .weapons > .unnarmed > label {
+.charsheet .weapons > .repcontainer > .repitem > label, .charsheet .weapons > .unnarmed > label, .charsheet .weapons > .unnarmed > span {
   display: inline-block;
   width: 30px;
   margin-right: -12px;
@@ -358,7 +364,9 @@
 
 .sheet-rolltemplate-simple,
 .sheet-rolltemplate-attack,
-.sheet-rolltemplate-goldorak {
+.sheet-rolltemplate-goldorak,
+.sheet-rolltemplate-damage,
+.sheet-rolltemplate-burndamage {
   width: 100%;
   padding: 0px;
   background: #d4d4de;
@@ -367,19 +375,41 @@
 }
 .sheet-rolltemplate-simple h3,
 .sheet-rolltemplate-attack h3,
-.sheet-rolltemplate-goldorak h3 {
+.sheet-rolltemplate-goldorak h3,
+.sheet-rolltemplate-damage h3,
+.sheet-rolltemplate-burndamage h3 {
   background: #555;
   color: white;
   padding: 5px;
 }
 .sheet-rolltemplate-simple > .sheet-rollBody,
 .sheet-rolltemplate-attack > .sheet-rollBody,
-.sheet-rolltemplate-goldorak > .sheet-rollBody {
+.sheet-rolltemplate-goldorak > .sheet-rollBody,
+.sheet-rolltemplate-damage > .sheet-rollBody,
+.sheet-rolltemplate-burndamage > .sheet-rollBody {
   padding: 10px;
+}
+.sheet-rolltemplate-simple > .sheet-rollBody > .sheet-even,
+.sheet-rolltemplate-attack > .sheet-rollBody > .sheet-even,
+.sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-even,
+.sheet-rolltemplate-damage > .sheet-rollBody > .sheet-even,
+.sheet-rolltemplate-burndamage > .sheet-rollBody > .sheet-even {
+  background: #c4c4ce;
+}
+.sheet-rolltemplate-simple > .sheet-rollBody > .sheet-severity,
+.sheet-rolltemplate-attack > .sheet-rollBody > .sheet-severity,
+.sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-severity,
+.sheet-rolltemplate-damage > .sheet-rollBody > .sheet-severity,
+.sheet-rolltemplate-burndamage > .sheet-rollBody > .sheet-severity {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 .sheet-rolltemplate-simple > .sheet-rollBody > .sheet-big,
 .sheet-rolltemplate-attack > .sheet-rollBody > .sheet-big,
-.sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-big {
+.sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-big,
+.sheet-rolltemplate-damage > .sheet-rollBody > .sheet-big,
+.sheet-rolltemplate-burndamage > .sheet-rollBody > .sheet-big {
   text-align: center;
   font-size: 1.2em;
   height: 35px;
@@ -389,7 +419,11 @@
 .sheet-rolltemplate-attack > .sheet-rollBody > .sheet-baseRoll,
 .sheet-rolltemplate-attack > .sheet-rollBody > .sheet-modRoll,
 .sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-baseRoll,
-.sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-modRoll {
+.sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-modRoll,
+.sheet-rolltemplate-damage > .sheet-rollBody > .sheet-baseRoll,
+.sheet-rolltemplate-damage > .sheet-rollBody > .sheet-modRoll,
+.sheet-rolltemplate-burndamage > .sheet-rollBody > .sheet-baseRoll,
+.sheet-rolltemplate-burndamage > .sheet-rollBody > .sheet-modRoll {
   display: inline-block;
   float: left;
   width: 50%;
@@ -398,7 +432,11 @@
 .sheet-rolltemplate-attack > .sheet-rollBody > .sheet-baseRoll > div,
 .sheet-rolltemplate-attack > .sheet-rollBody > .sheet-modRoll > div,
 .sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-baseRoll > div,
-.sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-modRoll > div {
+.sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-modRoll > div,
+.sheet-rolltemplate-damage > .sheet-rollBody > .sheet-baseRoll > div,
+.sheet-rolltemplate-damage > .sheet-rollBody > .sheet-modRoll > div,
+.sheet-rolltemplate-burndamage > .sheet-rollBody > .sheet-baseRoll > div,
+.sheet-rolltemplate-burndamage > .sheet-rollBody > .sheet-modRoll > div {
   height: 30px;
   text-align: center;
 }
@@ -406,14 +444,22 @@
 .sheet-rolltemplate-attack > .sheet-rollBody > .sheet-baseRoll > div:first-of-type,
 .sheet-rolltemplate-attack > .sheet-rollBody > .sheet-modRoll > div:first-of-type,
 .sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-baseRoll > div:first-of-type,
-.sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-modRoll > div:first-of-type {
+.sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-modRoll > div:first-of-type,
+.sheet-rolltemplate-damage > .sheet-rollBody > .sheet-baseRoll > div:first-of-type,
+.sheet-rolltemplate-damage > .sheet-rollBody > .sheet-modRoll > div:first-of-type,
+.sheet-rolltemplate-burndamage > .sheet-rollBody > .sheet-baseRoll > div:first-of-type,
+.sheet-rolltemplate-burndamage > .sheet-rollBody > .sheet-modRoll > div:first-of-type {
   background: #c4c4ce;
 }
 .sheet-rolltemplate-simple > .sheet-rollBody > .sheet-baseRoll .sheet-d8, .sheet-rolltemplate-simple > .sheet-rollBody > .sheet-modRoll .sheet-d8,
 .sheet-rolltemplate-attack > .sheet-rollBody > .sheet-baseRoll .sheet-d8,
 .sheet-rolltemplate-attack > .sheet-rollBody > .sheet-modRoll .sheet-d8,
 .sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-baseRoll .sheet-d8,
-.sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-modRoll .sheet-d8 {
+.sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-modRoll .sheet-d8,
+.sheet-rolltemplate-damage > .sheet-rollBody > .sheet-baseRoll .sheet-d8,
+.sheet-rolltemplate-damage > .sheet-rollBody > .sheet-modRoll .sheet-d8,
+.sheet-rolltemplate-burndamage > .sheet-rollBody > .sheet-baseRoll .sheet-d8,
+.sheet-rolltemplate-burndamage > .sheet-rollBody > .sheet-modRoll .sheet-d8 {
   font-family: dicefontd8;
   font-size: 1.8em;
 }
@@ -421,19 +467,27 @@
 .sheet-rolltemplate-attack > .sheet-rollBody > .sheet-baseRoll .sheet-d10,
 .sheet-rolltemplate-attack > .sheet-rollBody > .sheet-modRoll .sheet-d10,
 .sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-baseRoll .sheet-d10,
-.sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-modRoll .sheet-d10 {
+.sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-modRoll .sheet-d10,
+.sheet-rolltemplate-damage > .sheet-rollBody > .sheet-baseRoll .sheet-d10,
+.sheet-rolltemplate-damage > .sheet-rollBody > .sheet-modRoll .sheet-d10,
+.sheet-rolltemplate-burndamage > .sheet-rollBody > .sheet-baseRoll .sheet-d10,
+.sheet-rolltemplate-burndamage > .sheet-rollBody > .sheet-modRoll .sheet-d10 {
   font-family: dicefontd10;
   font-size: 1.8em;
 }
 .sheet-rolltemplate-simple > .sheet-rollBody > .sheet-conditions,
 .sheet-rolltemplate-attack > .sheet-rollBody > .sheet-conditions,
-.sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-conditions {
+.sheet-rolltemplate-goldorak > .sheet-rollBody > .sheet-conditions,
+.sheet-rolltemplate-damage > .sheet-rollBody > .sheet-conditions,
+.sheet-rolltemplate-burndamage > .sheet-rollBody > .sheet-conditions {
   font-size: 0.9em;
   font-style: italic;
 }
 .sheet-rolltemplate-simple .inlinerollresult,
 .sheet-rolltemplate-attack .inlinerollresult,
-.sheet-rolltemplate-goldorak .inlinerollresult {
+.sheet-rolltemplate-goldorak .inlinerollresult,
+.sheet-rolltemplate-damage .inlinerollresult,
+.sheet-rolltemplate-burndamage .inlinerollresult {
   border: none;
   background: none;
 }
@@ -443,7 +497,13 @@
 .sheet-rolltemplate-attack .inlinerollresult.importantroll,
 .sheet-rolltemplate-goldorak .inlinerollresult.fullcrit,
 .sheet-rolltemplate-goldorak .inlinerollresult.fullfail,
-.sheet-rolltemplate-goldorak .inlinerollresult.importantroll {
+.sheet-rolltemplate-goldorak .inlinerollresult.importantroll,
+.sheet-rolltemplate-damage .inlinerollresult.fullcrit,
+.sheet-rolltemplate-damage .inlinerollresult.fullfail,
+.sheet-rolltemplate-damage .inlinerollresult.importantroll,
+.sheet-rolltemplate-burndamage .inlinerollresult.fullcrit,
+.sheet-rolltemplate-burndamage .inlinerollresult.fullfail,
+.sheet-rolltemplate-burndamage .inlinerollresult.importantroll {
   border: none;
 }
 

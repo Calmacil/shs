@@ -13,6 +13,7 @@ main
         +textLabelled('charname', 'Nom & Rôle:', 'charname')
         +textLabelled('player', 'Joueur:', 'player')
         +hiddenInput('character_name', '')
+        +actButton('testWounds', '')
     +panel().panel-nav
         +navRadio('page', 'Notes & relations', 'base')
         +navRadio('page', 'Combat', 'combat')
@@ -48,6 +49,8 @@ main
 include rolltemplates/simple.html
 include rolltemplates/attack.html
 include rolltemplates/goldorak.html
+include rolltemplates/damage.html
+include rolltemplates/burndamage.html
 script(type='text/worker')
     include js/sections.js
     include js/dice.js

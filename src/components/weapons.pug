@@ -6,6 +6,7 @@ mixin weapons()
         span Attributs
         span(title="Munitions") Mun.
         span(title="Expert ?") Exp.
+        span(title="Dommages de brûlure / corrosion ?") r
         span
         .unnarmed
             +textInput('unnarmed-name', 'Mains nues')(readonly)
@@ -14,7 +15,7 @@ mixin weapons()
             +textInput('unnarmed-attributes', '-')(readonly)
             +numberInput('unnarmed-ammo', 0)(readonly)
             +cbButton('unnarmed-exp', ' ', 1)
-            +actButton('unnarmed-attack', '').roll.d10
+            span
         fieldset.repeating_weapons
             +textInput('name')
             +numberInput('impact', 0)
@@ -22,5 +23,7 @@ mixin weapons()
             +textInput('attributes')
             +numberInput('ammo', 0)
             +cbButton('exp', ' ', 1)
+            +cbButton('burn', ' ', 1)
             +actButton('attack', '').roll.d10
-        +actButton('unnarmed', '').hidden
+        +hiddenInput('dmgString', '&{template:damage}{{roll=[[d8]]}}')
+        +rollButton('damages', '@{dmgString}').hidden

@@ -10,10 +10,16 @@ const askForMeleeMod = "!{{template:default}}"
 const askForDistMod = "!{{template:default}}"
     + "{{aimedMod=![[?{Tir ajusté au tour précédent ?|Non, 0|Oui, 2}]]}}"
     + "{{lethalAtk=![[?{Attaque expéditive ?|Non, 0|Oui, -2}]]}}"
+    + "{{distMod=![[?{Distance de la cible?|Moyenne, 0|Courte, 1|Longue, -1}]]}}"
+
+const askForDmgMod = "!{{template:default}}"
+    + "{{tgtArmor=![[?{Protection cible ?}]]}}"
+
+const damageRollString = "&{template:_TEMPLATE_}{{roll=[[d8+_IMPACT_-?{Protection cible ?|0}]]}}{{weapon=_WPNAME_}}"
 
 const distanceUnnarmed = "&{template:goldorak} {{roll=[[0]]}}"
 
-const attackVars = "{{surprise=[[0]]}}{{lethal=[[0]]}}{{aimed=[[0]]}}"
+const attackVars = "{{surprise=[[0]]}}{{lethal=[[0]]}}{{aimed=[[0]]}}{{button=[[0]]}}"
 
 /**
  * Returns a range modifier for long range attacks
@@ -64,8 +70,10 @@ const preDistance = async () => {
     let roll = await startRoll(askForDistMod)
     let lethalMod = parseInt(roll.results.lethalAtk.result)||0
     let aimedMod = parseInt(roll.results.aimedMod.result)||0
+    let distMod = parseInt(roll.results.distMod.result)||0
+
     let response = {
-        specificMod: lethalMod + aimedMod,
+        specificMod: lethalMod + aimedMod + distMod,
         conditions: {
             lethal: lethalMod&&1,
             aimed: aimedMod&&1
@@ -75,7 +83,24 @@ const preDistance = async () => {
     return response
 }
 
-const attackRoll = async (strategy, wpnName, isExpert, range, impact, isArmed) => {
+/**
+ * Prepares the damage roll
+ *
+ * @param {string} wpnName The weapon name
+ * @param {int} impact The weapon impact
+ * @param {int} isBurning Standard or burning damage ?
+ */
+const setDamageString = async (wpnName, impact, isBurning) => {
+    let rollString = damageRollString
+        .replace('_TEMPLATE_', isBurning ? 'burndamage' : 'damage')
+        .replace('_WPNAME_', wpnName)
+        .replace('_IMPACT_', impact)
+    setAttrs({
+        dmgString: rollString
+    })
+}
+
+const attackRoll = async (strategy, wpnName, isExpert, range, impact, isArmed, isBurning) => {
     // Case strategy 0 Aggressive
     attr = 'carrure'
     sublabel = 'Combat rapproché (Carrure)'
@@ -93,6 +118,8 @@ const attackRoll = async (strategy, wpnName, isExpert, range, impact, isArmed) =
         }
     }
 
+    setDamageString(wpnName, impact, isBurning)
+
     attributeRoll(attr, (isExpert === 1), wpnName, preRoll.specificMod + isArmed, 'attack', sublabel, preRoll.conditions)
 }
 
@@ -105,14 +132,13 @@ on('clicked:unnarmed-attack', async ev => {
         finishRoll(oops.rollId)
     } else {
         getAttrs(['unnarmed-exp'], (v) => {
-            console.log(v)
             let wpName = 'Mains nues'
             let isExpert = parseInt(v['unnamred-exp'])||0
             let range = 'C'
             let impact = 0
             let isArmed = 0
 
-            attackRoll(strategy, wpName, isExpert, range, impact, isArmed)
+            attackRoll(strategy, wpName, isExpert, range, impact, isArmed, false)
         })
     }
 })
@@ -121,16 +147,16 @@ on('clicked:repeating_weapons:attack', async ev => {
     strategyroll = await startRoll(askForStrategy)
     let strategy = parseInt(strategyroll.results.strategy.result)||0
 
-    let toGet = ['name', 'impact', 'range', 'exp'].map(a => 'repeating_weapons_' + a)
-    console.error(toGet)
+    let toGet = ['name', 'impact', 'range', 'exp', 'burn'].map(a => 'repeating_weapons_' + a)
+
     getAttrs(toGet, v => {
-        console.log(v)
         let wpName = v.repeating_weapons_name
         let isExpert = parseInt(v.repeating_weapons_exp)||0
         let range = v.repeating_weapons_range
         let impact = parseInt(v.repeating_weapons_impact)||0
         let isArmed = 1
+        let isBurning = parseInt(v.repeating_weapons_burn)||0
 
-        attackRoll(strategy, wpName, isExpert, range, impact, isArmed)
+        attackRoll(strategy, wpName, isExpert, range, impact, isArmed, isBurning)
     })
 })

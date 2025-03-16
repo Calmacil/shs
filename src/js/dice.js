@@ -25,10 +25,9 @@ const OPT_SACRIFICE = 2
  * @param {string} sublabel Optional label to be displayed on specific templates
  */
 var attributeRoll = async (attrName, isExpert=false, title='', specificMod=0, template='simple', sublabel='', conditions={}) => {
-    console.log(attrName, isExpert, title, specificMod, template, sublabel, conditions)
     let preroll = await startRoll(askForMod)
 
-    getAttrs([attrName, 'woundsMalus'], async v => {
+    getAttrs([attrName, 'woundsMalus', 'character_name'], async v => {
         let attrVal = parseInt(v[attrName])||8
         let woundsMod = Math.abs(parseInt(v.woundsMalus)||0)
         let totalMod = specificMod + preroll.results.ask.result - woundsMod
@@ -44,7 +43,10 @@ var attributeRoll = async (attrName, isExpert=false, title='', specificMod=0, te
             .replace('_LABEL_', title)
 
         if (template == 'attack') {
-            rollString = rollString + attackVars
+            rollString = rollString
+                + attackVars
+                + '{{charname=_CHARNAME_}}'
+                    .replace('_CHARNAME_', v.character_name)
         }
 
         let roll = await startRoll(rollString)
