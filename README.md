@@ -12,5 +12,10 @@ En deux mots, suivez le tuto de Fardatir mais en utilisant les fichiers shs.html
 
 Comme nous gérons les jets de dommage, nous proposons les deux [macros](https://wiki.roll20.net/Macros) suivantes que vous pouvez créer sur votre campagne:
 
-Dommages: ``&{template:damage}{{roll=[[1d8 + ?{Impact ?|0} - ?{Protection ?|0}]]}} {{weapon=?{Arme / créature ?}}}``
-Dommages de corrosion: ``&{template:burndamage}{{roll=[[1d8 + ?{Impact ?|0} - ?{Protection ?|0}]]}} {{weapon=?{Arme / créature ?}}}``
+Dommages:
+```macro
+&{template:damage}{{roll=[[1d8 + ?{Impact ?|0} - ?{Protection ?|0}]]}} {{weapon=?{Arme / créature ?}}}
+```
+Dommages de corrosion:
+```macro
+&{template:burndamage}{{roll=[[1d8 + ?{Impact ?|0} - ?{Protection ?|0}]]}} {{weapon=?{Arme / créature ?}}}```
